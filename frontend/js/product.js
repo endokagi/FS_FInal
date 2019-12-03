@@ -5,16 +5,18 @@ $(function () {
     // Get data when first time open
     getData();
 
-    function getData(){
+    function getData() {
         $("#plist").empty();
         // #12 Get all products and display as a table
         // use $.get
-
+        $.get(url,function(data){
+            $('#plist').append();
+        });
         // ===============================
     }
-    
+
     // Update photo when URL has changed
-    $("#photo").change(function(){
+    $("#photo").change(function () {
         $("#preview").attr("src", $("#photo").val());
     })
 
@@ -30,7 +32,7 @@ $(function () {
 
         // #13 Add new products by calling api
         // use $.post
-
+        
         // ===============================
 
     });
