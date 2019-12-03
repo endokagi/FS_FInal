@@ -10,7 +10,22 @@ $(function () {
     function getData() {
         // #14 Get a selected product and display as a form
         // use $.get
+        $.get(url, function (data, status) {
 
+            $.each(data, function (index, item) {
+                $('#plist').append(`<tr>
+                    <td><img src="${item['photo']}"></td>
+                    <td>${item['serialno']}</td>
+                    <td>${item['name']}</td>
+                    <td>${item['category']}</td>
+                    <td>${item['price']}</td>
+                    <td><a href="productdetail.html?pid=${item['_id']}" class="btn btn-primary" style="color:white" role="button">Detail</a></td>
+                </tr>`);
+
+            });
+
+
+        });
         // ===============================
     }
 
@@ -49,7 +64,14 @@ $(function () {
     $("#confirmdelete").click(function () {
         // #15 Get a selected product and go back to product list
         // use $.get and winidow.location.href
-
+        $.ajax({
+            url: url,
+            type: 'DELETE',
+            data: deleteproduct,
+            success: function (result) {
+                winidow.location.href = "product.html";
+            }
+        });
         // ===============================
     });
 });
